@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center" id="form-title">{{ titulo }}</h2>
+            <form [formGroup]="formVeterinario" (ngSubmit)="agregarOEditar()">
+                <div class="form-group">
+                    <label for="nombre">Nombre(s)</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidoP">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="apellidoP" formControlName="apellidoP" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidoM">Apellido Materno</label>
+                    <input type="text" class="form-control" id="apellidoM" formControlName="apellidoM" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label for="especialidad">Especialidad</label>
+                    <select class="form-control" id="especialidad" formControlName="especialidad" required>
+                        <option value="Quimicofarmacobiologo">Quimicofarmacobiologo</option>
+                        <option value="MedicoGeneral">Medico General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" formControlName="telefono" required>
+                </div>
+                <button type="button" class="btn btn-danger" routerLink='/veterinario'>Cancelar</button>
+                <button type="submit" class="btn btn-success" [disabled]="formVeterinario.invalid">Guardar</button>
+                <button type="button" class="btn btn-warning" (click)="limpiarFormulario()">Limpiar</button>
+            </form>
+        </div>
+    </div>
+</div>
