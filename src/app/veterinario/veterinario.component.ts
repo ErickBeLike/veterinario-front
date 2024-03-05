@@ -60,6 +60,13 @@ export class VeterinarioComponent implements OnInit {
         const confirmacion = window.confirm('¿Está seguro de que desea guardar el registro del veterinario?');
 
         if (confirmacion) {
+            // Ajustar la fecha de nacimiento para evitar la resta de un día
+            const fechaNacimiento = new Date(this.formVeterinario.value.fechaNacimiento);
+            fechaNacimiento.setDate(fechaNacimiento.getDate() + 1);
+    
+            // Asignar la fecha ajustada al formulario antes de enviar al backend
+            this.formVeterinario.patchValue({ fechaNacimiento });
+    
             this.veterinarioService.agregarVeterinario(this.formVeterinario.value).subscribe(
                 response => {
                     this.generarPDF(response);
@@ -109,7 +116,6 @@ export class VeterinarioComponent implements OnInit {
     
         // Formatear la fecha de nacimiento
         const fechaNacimiento = new Date(veterinario.fechaNacimiento).toLocaleDateString('es-ES');
-    
         pdf.setFontSize(12);
         pdf.setTextColor(227, 108, 34); // Cambiar color del texto siguiente
     
