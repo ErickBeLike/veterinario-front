@@ -1,10 +1,16 @@
 .container {
-    padding-top: 50px;
+    padding-top: 10px;
+    margin-bottom: 15px;
 }
+
 .form-group {
     margin-bottom: 20px;
 }
-.btn-danger, .btn-success, .btn-warning {
-    margin: 20px;
+
+button {
+    margin-left: 15px; 
 }
 
+h2 {
+    margin-bottom: 20px;
+}

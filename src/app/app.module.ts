@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { VeterinarioComponent } from './veterinario/veterinario.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExtraComponent } from './extra/extra.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VeterinarioComponent
+    VeterinarioComponent,
+    ExtraComponent
   ],
   imports: [
     BrowserModule,

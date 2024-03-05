@@ -1,0 +1,12 @@
+.custom-btn {
+    background-color: #E36C22;
+    color: white;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+  }
+  
+  .custom-btn:hover {
+    background-color: #D35400; /* Cambia el color al pasar el ratón */
+  }
+
+  
+  

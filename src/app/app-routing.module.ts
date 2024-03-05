@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VeterinarioComponent } from './veterinario/veterinario.component';
+import { ExtraComponent } from './extra/extra.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/veterinario',
+    redirectTo: '/extra',
     pathMatch: 'full'
   },
 
   {
     path: 'veterinario',
     component: VeterinarioComponent
+  },
+  {
+    path: 'extra',
+    component: ExtraComponent
   }
 ];
 
