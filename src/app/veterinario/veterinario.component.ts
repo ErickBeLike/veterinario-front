@@ -60,7 +60,22 @@ export class VeterinarioComponent implements OnInit {
         const confirmacion = window.confirm('¿Está seguro de que desea guardar el registro del veterinario?');
 
         if (confirmacion) {
-            this.veterinarioService.agregarVeterinario(this.formVeterinario.value).subscribe(
+            // Obtener la fecha de nacimiento del formulario
+            const fechaNacimientoForm = this.formVeterinario?.get('fechaNacimiento')?.value;
+
+            if (fechaNacimientoForm) {
+                // Crear un objeto Date
+                const fechaNacimiento = new Date(fechaNacimientoForm);
+
+                // Convertir la fecha a una cadena con el formato "YYYY-MM-DD"
+                const fechaNacimientoString = fechaNacimiento.toISOString().split('T')[0];
+
+                // Actualizar el valor del formulario con la fecha ajustada
+                this.formVeterinario?.get('fechaNacimiento')?.setValue(fechaNacimientoString);
+            }
+
+            // Continuar con el resto de la lógica
+            this.veterinarioService.agregarVeterinario(this.formVeterinario?.value).subscribe(
                 response => {
                     this.generarPDF(response);
                     this.generarJSON(response);
@@ -108,7 +123,7 @@ export class VeterinarioComponent implements OnInit {
         const lineHeight = 10;
     
         // Formatear la fecha de nacimiento
-        const fechaNacimiento = new Date(veterinario.fechaNacimiento).toLocaleDateString('es-ES');
+        const fechaNacimiento = new Date(veterinario.fechaNacimiento).toISOString().split('T')[0];
     
         pdf.setFontSize(12);
         pdf.setTextColor(227, 108, 34); // Cambiar color del texto siguiente
@@ -132,6 +147,8 @@ export class VeterinarioComponent implements OnInit {
     }
     
     generarJSON(veterinario: any): void {
+        veterinario.fechaNacimiento = new Date(veterinario.fechaNacimiento).toISOString().split('T')[0];
+
         const jsonContent = JSON.stringify(veterinario, null, 2);
         const blob = new Blob([jsonContent], { type: 'text/plain' });
         const link = document.createElement('a');
